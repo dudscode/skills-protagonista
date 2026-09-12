@@ -20,15 +20,15 @@ Leia a referência do passo em que estiver, não todas de uma vez:
 
 | Referência | Para quê |
 |---|---|
-| [referencias/insumos.md](referencias/insumos.md) | O que perguntar antes de montar e o que levar ao mentor |
-| [referencias/estrutura.md](referencias/estrutura.md) | Árvore de pastas e o papel de cada arquivo |
-| [referencias/conteudo.md](referencias/conteudo.md) | O contrato do `conteudo.md` |
-| [referencias/avaliacao-e-feedback.md](referencias/avaliacao-e-feedback.md) | Avaliação, code review e feedback |
-| [referencias/entrevista.md](referencias/entrevista.md) | Como escrever o prompt de entrevista e o relatório |
-| [referencias/projeto-integrador.md](referencias/projeto-integrador.md) | Projeto com restrições que forçam decisão |
-| [referencias/modo-sabotagem.md](referencias/modo-sabotagem.md) | Protocolo das falhas às cegas e o war-room-log |
-| [referencias/checkpoints.md](referencias/checkpoints.md) | Diagnóstico, módulo de consolidação e registro de decisão |
-| [referencias/apoio.md](referencias/apoio.md) | Apostila e plano dia a dia |
+| [references/insumos.md](references/insumos.md) | O que perguntar antes de montar e o que levar ao mentor |
+| [references/estrutura.md](references/estrutura.md) | Árvore de pastas e o papel de cada arquivo |
+| [references/conteudo.md](references/conteudo.md) | O contrato do `conteudo.md` |
+| [references/avaliacao-e-feedback.md](references/avaliacao-e-feedback.md) | Avaliação, code review e feedback |
+| [references/entrevista.md](references/entrevista.md) | Como escrever o prompt de entrevista e o relatório |
+| [references/projeto-integrador.md](references/projeto-integrador.md) | Projeto com restrições que forçam decisão |
+| [references/modo-sabotagem.md](references/modo-sabotagem.md) | Protocolo das falhas às cegas e o war-room-log |
+| [references/checkpoints.md](references/checkpoints.md) | Diagnóstico, módulo de consolidação e registro de decisão |
+| [references/apoio.md](references/apoio.md) | Apostila e plano dia a dia |
 | [templates/](templates/) | Esqueletos dos arquivos de cada bloco |
 
 ## Princípios
@@ -53,7 +53,7 @@ Valem para tudo o que a skill gera. Eles vêm de erros reais de roadmaps anterio
 ## Fluxo de criação
 
 ### 1. Coletar os insumos
-Use o questionário de [referencias/insumos.md](referencias/insumos.md). Peça numa mensagem só, agrupado. Os indispensáveis são:
+Use o questionário de [references/insumos.md](references/insumos.md). Peça numa mensagem só, agrupado. Os indispensáveis são:
 - papel atual, objetivo concreto e o motivo (vaga, promoção, mudança de área, plantão);
 - o que domina, o que conhece raso e o que nunca viu;
 - **a orientação do mentor, colada literalmente**, sem reescrever;
@@ -65,11 +65,11 @@ Use o questionário de [referencias/insumos.md](referencias/insumos.md). Peça n
 Antes de gerar qualquer arquivo, faça as perguntas de calibragem da referência: o nível real em cada tópico, o que priorizar e o que cortar. Não presuma.
 
 ### 3. Montar a v1
-Siga [referencias/estrutura.md](referencias/estrutura.md):
+Siga [references/estrutura.md](references/estrutura.md):
 - **Etapas mensais dependentes**, cada uma com um **foco verbal progressivo**, por exemplo: *entender → rodar e modificar → diagnosticar → operar → decidir e defender*. A última etapa é a de decidir e defender, e fica por último de propósito: ela cobra decisões sobre o que as anteriores construíram.
 - **Blocos de duas semanas** dentro de cada etapa, com os arquivos de [templates/](templates/).
-- **Projeto integrador** se o objetivo envolver construir algo ([referencias/projeto-integrador.md](referencias/projeto-integrador.md)).
-- **Calendário do Modo Sabotagem** se houver projeto ([referencias/modo-sabotagem.md](referencias/modo-sabotagem.md)).
+- **Projeto integrador** se o objetivo envolver construir algo ([references/projeto-integrador.md](references/projeto-integrador.md)).
+- **Calendário do Modo Sabotagem** se houver projeto ([references/modo-sabotagem.md](references/modo-sabotagem.md)).
 - **Avaliação final de defesa**, não de produzir mais código.
 - **Fora do escopo explícito:** o que a pessoa não vai aprender, e por quê.
 - **Checklist final** de competências observáveis ("sabe diagnosticar X pelo sintoma Y"), no `README.md`.
@@ -77,7 +77,7 @@ Siga [referencias/estrutura.md](referencias/estrutura.md):
 Gere primeiro o `README.md`, o `progresso.md` e a Etapa 1 completa. As etapas seguintes podem nascer com o `README.md` da etapa e os blocos só com o `conteudo.md` esboçado, e ser detalhadas quando a pessoa chegar nelas: o que ela aprender na Etapa 1 muda a Etapa 3.
 
 ### 4. Preparar a validação
-Gere a lista de perguntas para o mentor ([referencias/insumos.md](referencias/insumos.md#perguntas-para-o-mentor)). Quando a pessoa voltar com o retorno, ajuste. Onde discordar do mentor, diga e explique o porquê, sem aceitar tudo automaticamente.
+Gere a lista de perguntas para o mentor ([references/insumos.md](references/insumos.md#perguntas-para-o-mentor)). Quando a pessoa voltar com o retorno, ajuste. Onde discordar do mentor, diga e explique o porquê, sem aceitar tudo automaticamente.
 
 ## Fluxo de condução
 
@@ -85,15 +85,15 @@ Identifique o pedido e siga a referência correspondente:
 
 | A pessoa diz | O que fazer | Referência |
 |---|---|---|
-| "Terminei o bloco X", "me avalie" | Avaliar pela `avaliacao.md` do bloco, fazer o code review e escrever o `feedback.md` | [avaliacao-e-feedback.md](referencias/avaliacao-e-feedback.md) |
-| Responde uma pergunta em aberto do feedback | Registrar como bloco datado no `feedback.md` e seguir, sem pedir licença a cada resposta | [avaliacao-e-feedback.md](referencias/avaliacao-e-feedback.md) |
-| Cola um relatório de entrevista | Colar em *Rodadas* da `entrevista.md` e avaliar o placar | [entrevista.md](referencias/entrevista.md) |
-| "Aplique uma sabotagem nível N" | Seguir o protocolo à risca, sem revelar as falhas | [modo-sabotagem.md](referencias/modo-sabotagem.md) |
-| Entrega um relatório de war room | Revisar como post-mortem: a evidência sustenta a causa raiz? | [modo-sabotagem.md](referencias/modo-sabotagem.md) |
-| "Acho que não estou evoluindo", ou fim de uma etapa com muitas dívidas | Fazer um diagnóstico e, se preciso, propor um módulo de consolidação | [checkpoints.md](referencias/checkpoints.md) |
-| "Mudou a stack", "mudou o prazo" | Escrever o registro de decisão e ajustar o roadmap | [checkpoints.md](referencias/checkpoints.md) |
-| "O conteúdo não explicou X" | Reescrever a seção do `conteudo.md` pelo contrato | [conteudo.md](referencias/conteudo.md) |
-| "Quero uma apostila", "quero um plano dia a dia" | Gerar o material de apoio | [apoio.md](referencias/apoio.md) |
+| "Terminei o bloco X", "me avalie" | Avaliar pela `avaliacao.md` do bloco, fazer o code review e escrever o `feedback.md` | [avaliacao-e-feedback.md](references/avaliacao-e-feedback.md) |
+| Responde uma pergunta em aberto do feedback | Registrar como bloco datado no `feedback.md` e seguir, sem pedir licença a cada resposta | [avaliacao-e-feedback.md](references/avaliacao-e-feedback.md) |
+| Cola um relatório de entrevista | Colar em *Rodadas* da `entrevista.md` e avaliar o placar | [entrevista.md](references/entrevista.md) |
+| "Aplique uma sabotagem nível N" | Seguir o protocolo à risca, sem revelar as falhas | [modo-sabotagem.md](references/modo-sabotagem.md) |
+| Entrega um relatório de war room | Revisar como post-mortem: a evidência sustenta a causa raiz? | [modo-sabotagem.md](references/modo-sabotagem.md) |
+| "Acho que não estou evoluindo", ou fim de uma etapa com muitas dívidas | Fazer um diagnóstico e, se preciso, propor um módulo de consolidação | [checkpoints.md](references/checkpoints.md) |
+| "Mudou a stack", "mudou o prazo" | Escrever o registro de decisão e ajustar o roadmap | [checkpoints.md](references/checkpoints.md) |
+| "O conteúdo não explicou X" | Reescrever a seção do `conteudo.md` pelo contrato | [conteudo.md](references/conteudo.md) |
+| "Quero uma apostila", "quero um plano dia a dia" | Gerar o material de apoio | [apoio.md](references/apoio.md) |
 
 Ao fechar qualquer entrega, atualize o `progresso.md`, com as decisões novas datadas no topo.
 

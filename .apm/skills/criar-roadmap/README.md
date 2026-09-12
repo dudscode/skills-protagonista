@@ -30,6 +30,16 @@ Uma skill do [Claude Code](https://claude.com/claude-code) para montar **e condu
 
 Se você fez o seu PDI com a skill [`criar-pdi`](../criar-pdi/), os eixos dele entram direto como gaps.
 
+## Instalação
+
+Com o [apm](https://github.com/microsoft/apm):
+
+```bash
+apm install dudscode/skills-protagonista --skill criar-roadmap --target claude
+```
+
+Ou copie a pasta `criar-roadmap` para `~/.claude/skills/`. O [README do repositório](../../../README.md) tem as duas formas em detalhe.
+
 ## Uso
 
 ```
@@ -52,7 +62,7 @@ Depois, no dia a dia:
 ```
 criar-roadmap/
 ├── SKILL.md                        # os dois modos, os princípios e os fluxos
-├── referencias/
+├── references/
 │   ├── insumos.md                  # questionário, calibragem, perguntas para o mentor
 │   ├── estrutura.md                # árvore do roadmap, README, progresso
 │   ├── conteudo.md                 # o contrato: 🧠 📚 🔨 ✅ + 🔬 ⚠️ 🚧

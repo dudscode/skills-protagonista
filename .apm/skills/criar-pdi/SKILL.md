@@ -8,9 +8,9 @@ description: Monta um PDI (Plano de Desenvolvimento Individual) de carreira em t
 Esta skill conduz a pessoa do material bruto (PDI antigo, feedback, LinkedIn, cases) até um `index.html` com 11 seções, no formato de apresentação. O PDI resultante é dela: o seu papel é organizar, cruzar e apontar lacunas, **nunca inventar evidência**.
 
 Leia as referências conforme avança:
-- [referencias/coleta.md](referencias/coleta.md): como extrair texto de pptx, pdf, fotos e LinkedIn.
-- [referencias/entrevista-star.md](referencias/entrevista-star.md): perguntas para montar cases quando a pessoa não tem.
-- [referencias/secoes.md](referencias/secoes.md): o que vai em cada seção e as regras de cada uma.
+- [references/coleta.md](references/coleta.md): como extrair texto de pptx, pdf, fotos e LinkedIn.
+- [references/entrevista-star.md](references/entrevista-star.md): perguntas para montar cases quando a pessoa não tem.
+- [references/secoes.md](references/secoes.md): o que vai em cada seção e as regras de cada uma.
 - [template.html](template.html): o esqueleto visual. Copie, não reescreva o CSS.
 
 ## Regras que valem para tudo
@@ -37,7 +37,7 @@ Não bloqueie esperando todos os insumos. Com o feedback e o LinkedIn já dá pa
 
 ### 2. Coletar e transcrever
 
-Siga [referencias/coleta.md](referencias/coleta.md). Salve cada fonte como Markdown na pasta do PDI, para que a pessoa revise o que você leu antes de você analisar:
+Siga [references/coleta.md](references/coleta.md). Salve cada fonte como Markdown na pasta do PDI, para que a pessoa revise o que você leu antes de você analisar:
 
 | Arquivo | Conteúdo |
 |---|---|
@@ -50,7 +50,7 @@ Mostre um resumo curto do que encontrou e do que faltou antes de seguir.
 
 ### 3. Completar os cases
 
-Se a pessoa não tem cases STAR, ou tem sem números, conduza a entrevista de [referencias/entrevista-star.md](referencias/entrevista-star.md). Faça poucas perguntas por vez. Cases são a matéria-prima das seções 3, 6 e 10, então vale o tempo.
+Se a pessoa não tem cases STAR, ou tem sem números, conduza a entrevista de [references/entrevista-star.md](references/entrevista-star.md). Faça poucas perguntas por vez. Cases são a matéria-prima das seções 3, 6 e 10, então vale o tempo.
 
 ### 4. Analisar
 
@@ -64,7 +64,7 @@ Pergunte se ela discorda de alguma hipótese. Ajuste e só então gere a página
 
 ### 5. Gerar o `index.html`
 
-Copie [template.html](template.html) para a pasta do PDI como `index.html` e preencha seção a seção, seguindo [referencias/secoes.md](referencias/secoes.md). Os comentários `<!-- REPETIR -->` marcam blocos que se duplicam por item. Remova seções sem conteúdo em vez de deixá-las vazias, e remova da legenda de status os que não forem usados.
+Copie [template.html](template.html) para a pasta do PDI como `index.html` e preencha seção a seção, seguindo [references/secoes.md](references/secoes.md). Os comentários `<!-- REPETIR -->` marcam blocos que se duplicam por item. Remova seções sem conteúdo em vez de deixá-las vazias, e remova da legenda de status os que não forem usados.
 
 Mantenha o CSS e o script do template. A paleta pode mudar (as variáveis estão no `:root`) se a pessoa quiser a identidade visual dela.
 

@@ -10,8 +10,8 @@ Elas não entregam plano genérico. Partem do seu contexto, perguntam quando fal
 
 | Skill | Para quê | Entrega |
 |---|---|---|
-| [`criar-pdi`](criar-pdi/) | Montar ou revisar o seu PDI a partir do feedback formal, do LinkedIn e dos seus cases | Uma página `index.html` com balanço, três espelhos, SWOT, eixos com sinal mensurável, roadmap de 12 meses e cases STAR |
-| [`criar-roadmap`](criar-roadmap/) | Montar e conduzir um roadmap de estudos validado por mentor | Uma pasta com etapas, blocos (conteúdo, avaliação, entrevista, feedback), projeto integrador e Modo Sabotagem |
+| [`criar-pdi`](.apm/skills/criar-pdi/) | Montar ou revisar o seu PDI a partir do feedback formal, do LinkedIn e dos seus cases | Uma página `index.html` com balanço, três espelhos, SWOT, eixos com sinal mensurável, roadmap de 12 meses e cases STAR |
+| [`criar-roadmap`](.apm/skills/criar-roadmap/) | Montar e conduzir um roadmap de estudos validado por mentor | Uma pasta com etapas, blocos (conteúdo, avaliação, entrevista, feedback), projeto integrador e Modo Sabotagem |
 
 ### Como elas se conectam
 
@@ -32,38 +32,73 @@ O PDI diz **o que** desenvolver. O roadmap diz **como** estudar e **como provar*
 
 ## Instalação
 
-As skills ficam em `~/.claude/skills/` (para você, em qualquer projeto) ou em `.claude/skills/` dentro de um projeto (para quem clonar esse projeto).
+### Com o apm (recomendado)
 
-**Todas as skills, para você:**
+O [apm](https://github.com/microsoft/apm), o Agent Package Manager, instala e atualiza as skills sem você copiar pasta nenhuma. Este repositório é um pacote apm: tem `apm.yml` na raiz e as skills em `.apm/skills/`.
+
+Instale o apm, se ainda não tiver:
+
+```bash
+brew install apm                        # macOS
+curl -sSL https://aka.ms/apm-unix | sh  # Linux, ou macOS sem Homebrew
+irm https://aka.ms/apm-windows | iex    # Windows, no PowerShell
+```
+
+Depois, na pasta do projeto onde você quer as skills:
+
+```bash
+# as duas skills
+apm install dudscode/skills-protagonista --target claude
+
+# uma skill só
+apm install dudscode/skills-protagonista --skill criar-pdi --target claude
+```
+
+O apm baixa o pacote em `apm_modules/` e publica as skills em `.claude/skills/`, que é de onde o Claude Code as lê.
+
+Para fixar uma versão, aponte para a tag: `dudscode/skills-protagonista#v1.0.0`.
+
+Se o seu projeto já tem um `apm.yml`, declare como dependência e rode `apm install`:
+
+```yaml
+dependencies:
+  apm:
+    - dudscode/skills-protagonista
+```
+
+**Atualizar:** `apm install --update`. **Remover:** `apm uninstall skills-protagonista`.
+
+> A opção `--skill` existe nas versões novas do apm. Se o seu reclamar dela, rode `apm update` antes.
+
+### Sem o apm, copiando as pastas
+
+As skills do Claude Code ficam em `~/.claude/skills/` (para você, em qualquer projeto) ou em `.claude/skills/` dentro de um projeto.
 
 ```bash
 git clone https://github.com/dudscode/skills-protagonista.git
+
+# as duas, para você
 mkdir -p ~/.claude/skills
-cp -R skills-protagonista/criar-* ~/.claude/skills/
-```
+cp -R skills-protagonista/.apm/skills/criar-* ~/.claude/skills/
 
-**Uma skill só:**
+# uma só
+cp -R skills-protagonista/.apm/skills/criar-pdi ~/.claude/skills/
 
-```bash
-cp -R skills-protagonista/criar-pdi ~/.claude/skills/
-```
-
-**Só num projeto:**
-
-```bash
+# ou só num projeto
 mkdir -p .claude/skills
-cp -R skills-protagonista/criar-roadmap .claude/skills/
+cp -R skills-protagonista/.apm/skills/criar-roadmap .claude/skills/
 ```
 
 **Atualizar:** `git pull` no clone e copie de novo.
 
-Para conferir: abra o Claude Code e digite `/`. As skills aparecem na lista.
+Para conferir, de qualquer uma das formas: abra o Claude Code e digite `/`. As skills aparecem na lista.
 
 ### Requisitos
 
 | Requisito | Quando |
 |---|---|
 | [Claude Code](https://claude.com/claude-code) | Sempre |
+| [`apm`](https://github.com/microsoft/apm) | Opcional: instalar e atualizar as skills sem copiar pasta |
 | Extensão Claude in Chrome, logada na sua conta do LinkedIn | `criar-pdi`, para ler o seu perfil |
 | `python3` | Para extrair texto de `.pptx` e servir a página localmente |
 | `pandoc` e Google Chrome | `criar-roadmap`, só se quiser apostilas em PDF |
@@ -167,6 +202,26 @@ Todas as skills do repositório seguem:
 
 ## Contribuindo
 
-Sugestões e novas skills de carreira são bem-vindas: abra uma issue ou um PR. Uma skill nova segue o mesmo formato: uma pasta com `SKILL.md` (frontmatter `name` e `description`), um `README.md` para humanos e as referências que o fluxo precisar.
+Sugestões e novas skills de carreira são bem-vindas: abra uma issue ou um PR.
+
+O repositório é um pacote apm:
+
+```
+skills-protagonista/
+├── apm.yml                  # o manifesto do pacote
+└── .apm/skills/
+    ├── criar-pdi/
+    │   ├── SKILL.md         # frontmatter com name e description
+    │   ├── README.md        # para humanos
+    │   ├── references/      # o que a skill lê conforme avança
+    │   └── template.html
+    └── criar-roadmap/
+        ├── SKILL.md
+        ├── README.md
+        ├── references/
+        └── templates/
+```
+
+Uma skill nova entra em `.apm/skills/<nome>/`, com o `SKILL.md` cujo `name` é igual ao nome da pasta. Suba a `version` do `apm.yml` e acrescente a skill à tabela e ao glossário deste README.
 
 Criado por [@dudscode](https://github.com/dudscode).

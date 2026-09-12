@@ -23,7 +23,13 @@ Nada é obrigatório, mas quanto mais, melhor:
 
 ## Instalação
 
-Copie a pasta `criar-pdi` para as skills do Claude Code (ou veja o [README do repositório](../README.md) para instalar todas):
+Com o [apm](https://github.com/microsoft/apm):
+
+```bash
+apm install dudscode/skills-protagonista --skill criar-pdi --target claude
+```
+
+Ou copiando a pasta para as skills do Claude Code:
 
 ```bash
 # para você, em qualquer projeto
@@ -32,6 +38,8 @@ cp -R criar-pdi ~/.claude/skills/
 # ou só para um projeto
 mkdir -p .claude/skills && cp -R criar-pdi .claude/skills/
 ```
+
+O [README do repositório](../../../README.md) tem as duas formas em detalhe.
 
 ## Uso
 
@@ -58,7 +66,7 @@ A skill pergunta o seu momento (chegar à cadeira ou sustentá-la), coleta e tra
 criar-pdi/
 ├── SKILL.md                   # o fluxo e as regras
 ├── template.html              # esqueleto visual (11 seções, responsivo, exporta PDF)
-└── referencias/
+└── references/
     ├── coleta.md              # extrair pptx, pdf, fotos e LinkedIn
     ├── entrevista-star.md     # perguntas para montar cases com número
     └── secoes.md              # o que vai em cada seção
