@@ -56,7 +56,13 @@ apm install dudscode/skills-protagonista
 apm install dudscode/skills-protagonista --skill criar-pdi
 ```
 
-O apm detecta os agentes que você usa e publica as skills na pasta de cada um: `.claude/skills/` no Claude Code, `.agents/skills/` nos demais. Para escolher, use `--target` (`--target copilot`, `--target claude,copilot`, ou `--target all`).
+O apm publica as skills na pasta do agente que ele detectar no projeto. Numa pasta que ainda não tem configuração de agente nenhum, ele cai num padrão — no nosso teste, `.github/skills/` —, então vale dizer qual você quer:
+
+```bash
+apm install dudscode/skills-protagonista --target claude
+apm install dudscode/skills-protagonista --target copilot
+apm install dudscode/skills-protagonista --target all
+```
 
 Ele baixa o pacote em `apm_modules/`, cria um `apm.yml` e um `apm.lock.yaml` no seu projeto, para a instalação ser reproduzível, e acrescenta `apm_modules/` ao seu `.gitignore`.
 
@@ -81,7 +87,10 @@ Cada agente lê as skills de uma pasta própria. As mais comuns:
 | Agente | Pasta do projeto | Pasta pessoal |
 |---|---|---|
 | Claude Code | `.claude/skills/` | `~/.claude/skills/` |
-| Demais agentes (Copilot, Codex, Cursor…) | `.agents/skills/` | conforme a documentação de cada um |
+| Copilot | `.github/skills/` | conforme a documentação |
+| Demais agentes (Codex, Cursor…) | `.agents/skills/` | conforme a documentação |
+
+Na dúvida, confira na documentação do seu agente, ou instale pelo apm com `--target` e veja onde os arquivos caíram.
 
 Copie a pasta da skill para lá:
 
