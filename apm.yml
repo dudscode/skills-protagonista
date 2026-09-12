@@ -1,0 +1,17 @@
+name: skills-protagonista
+version: 1.0.0
+description: Skills de carreira em tecnologia — montar o PDI a partir do feedback formal, do LinkedIn e dos cases, e criar e conduzir um roadmap de estudos validado por mentor.
+author: dudscode
+homepage: https://github.com/dudscode/skills-protagonista
+repository: https://github.com/dudscode/skills-protagonista
+keywords: [carreira, pdi, roadmap, estudo, mentoria, war-room, star, swot]
+
+type: skill
+targets:
+  - claude
+
+includes: auto
+
+dependencies:
+  apm: []
+  mcp: []

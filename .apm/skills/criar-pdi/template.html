@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDI {{ANO}} · {{NOME}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg0: #000000;
+    --bg1: #09033D;
+    --card: rgba(255, 255, 255, 0.045);
+    --card-strong: rgba(255, 255, 255, 0.08);
+    --line: rgba(255, 255, 255, 0.12);
+    --text: #FFFFFF;
+    --muted: #B9B6D6;
+    --faint: #8480AE;
+    --accent: #E81B46;
+    --purple: #B14DFF;
+    --blue: #6C7BFF;
+    --gold: #FFD815;
+    --ok: #2BD49A;
+    --wip: #FFB020;
+    --hold: #8A8FB5;
+    --heading: "Sora", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --body: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    padding-inline: 16px;
+    color: var(--text);
+    font: 16px/1.55 var(--body);
+    background-color: var(--bg0);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(ellipse at 30% 20%, var(--bg1) 0%, #050120 45%, var(--bg0) 100%);
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Estrutura de "slides" ---------- */
+  .slide {
+    min-height: 100vh;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-block: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-margin-top: 0;
+  }
+
+  .eyebrow {
+    font: 600 12px/1 var(--body);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  h1, h2, h3, h4 { font-family: var(--heading); margin: 0; line-height: 1.15; }
+  h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 12px; }
+  h3 { font-size: 19px; font-weight: 600; }
+  .lead { color: var(--muted); font-size: clamp(16px, 1.6vw, 19px); max-width: 760px; margin: 0 0 36px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+  }
+
+  .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  ul.clean { list-style: none; padding: 0; margin: 0; }
+  ul.clean li { padding: 7px 0; border-top: 1px solid var(--line); }
+  ul.clean li:first-child { border-top: 0; }
+
+  .muted { color: var(--muted); }
+  .faint { color: var(--faint); }
+  .small { font-size: 14px; }
+
+  /* ---------- Capa ---------- */
+  .cover { position: relative; overflow: hidden; }
+  .cover h1 {
+    font-size: clamp(56px, 11vw, 132px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+  .cover h1 span { color: var(--accent); }
+  .cover .name { font: 600 clamp(22px, 3vw, 32px)/1.2 var(--heading); margin-top: 28px; }
+  .cover .role {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+    font-size: 18px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .from-to s { color: var(--faint); }
+  .from-to b { color: var(--text); font-weight: 600; }
+  .cover .meta { margin-top: 48px; color: var(--faint); font-size: 14px; }
+  .sparkle { position: absolute; fill: var(--gold); opacity: 0.9; pointer-events: none; }
+
+  /* ---------- Quem sou ---------- */
+  .profile { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+  .kv { display: grid; grid-template-columns: 120px 1fr; gap: 10px 16px; margin: 0; }
+  .kv dt { color: var(--faint); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; padding-top: 2px; }
+  .kv dd { margin: 0; }
+  .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+  .timeline li { position: relative; padding: 0 0 18px 26px; }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: 5px; top: 8px; bottom: -8px;
+    width: 1px;
+    background: var(--line);
+  }
+  .timeline li:last-child::before { display: none; }
+  .timeline li::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 6px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--bg1);
+    border: 2px solid var(--muted);
+  }
+  .timeline li.now::after { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px rgba(232, 27, 70, 0.22); }
+  .timeline .when { font-size: 13px; color: var(--faint); }
+  .timeline .what { font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 13px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card-strong);
+  }
+
+  /* ---------- Status ---------- */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .s-ok { color: var(--ok); background: rgba(43, 212, 154, 0.12); }
+  .s-wip { color: var(--wip); background: rgba(255, 176, 32, 0.12); }
+  .s-hold { color: var(--hold); background: rgba(138, 143, 181, 0.14); }
+  .s-open { color: var(--accent); background: rgba(232, 27, 70, 0.13); }
+  .s-check { color: var(--gold); background: transparent; border: 1px dashed rgba(255, 216, 21, 0.6); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+
+  /* ---------- Tabela ---------- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  th, td { text-align: left; padding: 13px 16px; vertical-align: top; border-top: 1px solid var(--line); }
+  thead th {
+    border-top: 0;
+    font: 600 12px/1.2 var(--body);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  td:first-child { font-weight: 600; }
+  td .small { display: block; margin-top: 2px; }
+
+  /* ---------- Três espelhos ---------- */
+  .mirror h3 { margin-bottom: 4px; }
+  .mirror .src { font-size: 13px; color: var(--faint); margin-bottom: 16px; }
+  .mirror h4 { font: 600 12px/1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; margin: 16px 0 6px; }
+  .mirror h4.plus { color: var(--ok); }
+  .mirror h4.minus { color: var(--accent); }
+  .mirror.banca { border-color: rgba(232, 27, 70, 0.45); background: rgba(232, 27, 70, 0.06); }
+  .tag-rep { font-size: 11px; color: var(--gold); margin-left: 6px; white-space: nowrap; }
+  .insights { margin-top: 16px; }
+  .insight { border-left: 3px solid var(--gold); padding: 16px 20px; }
+  .insight.blind { border-left-color: var(--accent); }
+  .insight h3 { font-size: 16px; margin-bottom: 6px; }
+  .insight p { margin: 0; color: var(--muted); }
+
+  /* ---------- SWOT ---------- */
+  .quad { border-top: 3px solid var(--c); }
+  .q-s { --c: var(--ok); } .q-w { --c: var(--accent); } .q-o { --c: var(--blue); } .q-t { --c: var(--wip); }
+  .quad-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .letter {
+    font: 800 18px/1 var(--heading);
+    width: 34px; height: 34px; border-radius: 9px;
+    display: grid; place-items: center;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 14%, transparent);
+  }
+  .quad li { color: var(--muted); }
+  .quad strong { color: var(--text); font-weight: 600; }
+  .hyp { font-size: 11px; color: var(--gold); border: 1px dashed rgba(255, 216, 21, 0.5); border-radius: 999px; padding: 1px 7px; white-space: nowrap; }
+  .tows { margin-top: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .move h4 { font: 700 13px/1.2 var(--heading); color: var(--gold); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .move p { margin: 0; font-size: 14px; color: var(--muted); }
+  @media (max-width: 900px) { .tows { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .tows { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ---------- Banca ---------- */
+  .dims { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .dim h3 { font-size: 16px; margin-bottom: 12px; }
+  .dim .row { display: flex; gap: 10px; font-size: 14px; margin-top: 10px; }
+  .dim .row b { flex: none; width: 18px; }
+  .dim .up b { color: var(--ok); }
+  .dim .gap b { color: var(--accent); }
+  .dim .row span { color: var(--muted); }
+  .verdict {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .verdict .q { font: 800 64px/0.8 var(--heading); color: var(--accent); }
+  .verdict p { margin: 0 0 8px; }
+
+  /* ---------- Objetivo ---------- */
+  .goal {
+    font: 600 clamp(22px, 3vw, 34px)/1.3 var(--heading);
+    max-width: 920px;
+    margin: 0 0 36px;
+  }
+  .goal em { font-style: normal; color: var(--accent); }
+  .qa .q { font-weight: 600; margin-bottom: 8px; }
+  .qa p { margin: 0; color: var(--muted); }
+
+  /* ---------- Eixos ---------- */
+  .axes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .axis { display: flex; flex-direction: column; gap: 14px; }
+  .axis-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .axis-num { font: 800 13px/1 var(--heading); color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; }
+  .ask { font-size: 14px; color: var(--muted); font-style: italic; border-left: 2px solid var(--line); padding-left: 12px; margin: 0; }
+  .axis h4 { font: 600 12px/1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+  .axis ol { margin: 0; padding-left: 20px; }
+  .axis ol li { margin-bottom: 6px; }
+  .signal {
+    background: rgba(43, 212, 154, 0.07);
+    border: 1px solid rgba(43, 212, 154, 0.25);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  .signal b { color: var(--ok); }
+  .axis-foot { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--faint); margin-top: auto; }
+  .axis-foot b { color: var(--muted); font-weight: 500; }
+
+  /* ---------- Roadmap ---------- */
+  .road { grid-template-columns: repeat(3, minmax(0, 1fr)); position: relative; }
+  .phase { position: relative; padding-top: 30px; }
+  .phase .dot {
+    position: absolute; top: 20px; left: 22px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 6px rgba(232, 27, 70, 0.2);
+  }
+  .phase:nth-child(2) .dot { background: var(--purple); box-shadow: 0 0 0 6px rgba(177, 77, 255, 0.2); }
+  .phase:nth-child(3) .dot { background: var(--blue); box-shadow: 0 0 0 6px rgba(108, 123, 255, 0.2); }
+  .phase .when { font: 600 13px/1 var(--body); color: var(--faint); letter-spacing: 0.06em; margin: 18px 0 6px; text-transform: uppercase; }
+  .phase h3 { margin-bottom: 16px; }
+  .phase h4 { font: 600 12px/1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin: 16px 0 6px; }
+  .phase ul { margin: 0; padding-left: 18px; }
+  .phase li { margin-bottom: 5px; }
+
+  /* ---------- STAR ---------- */
+  .star-card h3 { margin-bottom: 4px; }
+  .star-card .src { font-size: 13px; color: var(--faint); margin-bottom: 14px; }
+  .star-grid { display: grid; grid-template-columns: 28px 1fr; gap: 8px 10px; font-size: 14px; }
+  .star-grid .l {
+    font: 800 13px/1 var(--heading);
+    width: 24px; height: 24px; border-radius: 6px;
+    display: grid; place-items: center;
+    background: var(--card-strong);
+    color: var(--accent);
+  }
+  .star-grid .v { color: var(--muted); font-style: italic; padding-top: 2px; }
+  .metrics { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 13px; }
+  .metrics b { color: var(--gold); font-weight: 600; }
+  .star-grid.filled .v { font-style: normal; }
+  .nums { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .nums span {
+    font: 700 14px/1 var(--heading);
+    padding: 7px 11px;
+    border-radius: 8px;
+    color: var(--ok);
+    background: rgba(43, 212, 154, 0.1);
+    border: 1px solid rgba(43, 212, 154, 0.25);
+  }
+  .side h3 { font-size: 16px; margin-bottom: 10px; }
+  .side strong { color: var(--text); font-weight: 600; }
+  .side li { color: var(--muted); }
+  .win { color: var(--ok); }
+  .loss { color: var(--accent); }
+  .lead a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+
+  /* ---------- Acompanhamento ---------- */
+  .cadence .big { font: 700 30px/1 var(--heading); margin-bottom: 6px; }
+  .next ol { margin: 0; padding-left: 20px; }
+  .next li { margin-bottom: 8px; }
+
+  footer { max-width: 1180px; margin: 0 auto; padding-block: 24px 48px; color: var(--faint); font-size: 13px; border-top: 1px solid var(--line); }
+
+  /* ---------- Navegação ---------- */
+  .dots {
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+  }
+  .dots a {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    display: block;
+    position: relative;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .dots a.on { background: var(--accent); transform: scale(1.35); }
+  .dots a span {
+    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    white-space: nowrap; font-size: 12px; color: var(--muted);
+    background: rgba(9, 3, 61, 0.9); padding: 3px 8px; border-radius: 6px;
+    opacity: 0; pointer-events: none; transition: opacity 0.15s;
+  }
+  .dots a:hover span, .dots a:focus-visible span { opacity: 1; }
+  .counter {
+    position: fixed; left: 18px; bottom: 16px; z-index: 10;
+    font: 600 12px/1 var(--body); color: var(--faint); letter-spacing: 0.1em;
+  }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width: 900px) {
+    .g3, .road, .profile, .axes { grid-template-columns: minmax(0, 1fr); }
+    .slide { min-height: auto; padding-block: 56px; }
+    .dots, .counter { display: none; }
+  }
+  @media (max-width: 640px) {
+    .g2 { grid-template-columns: minmax(0, 1fr); }
+    .kv { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .kv dd { margin-bottom: 10px; }
+    .verdict { grid-template-columns: minmax(0, 1fr); }
+    .card { padding: 18px; }
+  }
+
+  /* ---------- Impressão / PDF ---------- */
+  @media print {
+    @page { size: A4 landscape; margin: 12mm; }
+    body::before { display: none; }
+    body { background: var(--bg1) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .slide { min-height: auto; page-break-after: always; break-after: page; padding-block: 8px; }
+    .dots, .counter { display: none; }
+  }
+</style>
+</head>
+<body>
+<!--
+  TEMPLATE DO PDI · skill criar-pdi
+  - Troque todo {{...}} por conteúdo real. Sem fonte, use "A confirmar".
+  - Blocos entre os comentários REPETIR e /REPETIR se duplicam por item.
+  - Seção sem conteúdo sai inteira, não fica vazia.
+  - Regras de cada seção: references/secoes.md
+-->
+
+<nav class="dots" aria-label="Seções"></nav>
+<div class="counter" aria-hidden="true"></div>
+
+<!-- 1. CAPA -->
+<section class="slide cover" id="capa" data-title="Capa">
+  <svg class="sparkle" style="right:6%;top:18%;width:90px" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0C55 38 62 45 100 50C62 55 55 62 50 100C45 62 38 55 0 50C38 45 45 38 50 0Z"/></svg>
+  <svg class="sparkle" style="right:16%;top:34%;width:38px;opacity:.6" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0C55 38 62 45 100 50C62 55 55 62 50 100C45 62 38 55 0 50C38 45 45 38 50 0Z"/></svg>
+  <svg class="sparkle" style="right:9%;bottom:20%;width:54px;fill:var(--accent);opacity:.7" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0C55 38 62 45 100 50C62 55 55 62 50 100C45 62 38 55 0 50C38 45 45 38 50 0Z"/></svg>
+
+  <p class="eyebrow">Plano de Desenvolvimento Individual</p>
+  <h1>PDI<br>{{ANO}}<span>.</span></h1>
+  <div class="name">{{NOME}}</div>
+  <div class="role from-to"><s>{{CARGO_ANTERIOR}}</s> → <b>{{CARGO_ATUAL_OU_ALVO}}</b> · {{AREA}} · {{EMPRESA}}</div>
+  <p class="meta">{{QUANDO_E_POR_QUE_FOI_REVISADO}}<br>{{MODO: "Esta versão tem como objetivo chegar à cadeira" ou "...sustentá-la"}}</p>
+</section>
+
+<!-- 2. QUEM SOU -->
+<section class="slide" id="quem-sou" data-title="Quem sou">
+  <p class="eyebrow">Quem sou</p>
+  <h2>{{FRASE_DE_IDENTIDADE_PROFISSIONAL}}</h2>
+  <p class="lead">{{FORMACAO_ANOS_DE_EXPERIENCIA_E_ATUACAO_HOJE}}</p>
+
+  <div class="profile">
+    <div class="card">
+      <dl class="kv">
+        <dt>Área</dt><dd>{{AREA_E_ESCOPO}}</dd>
+        <dt>Formação</dt><dd>{{GRADUACAO}} · {{POS}}</dd>
+        <dt>Destaque</dt><dd>{{RECONHECIMENTOS}}</dd>
+        <dt>Cases</dt><dd>{{CASE_1_COM_NUMERO}} · {{CASE_2_COM_NUMERO}} · {{CASE_3_COM_NUMERO}}</dd>
+        <dt>Pessoas</dt><dd>{{MENTORIAS_E_RESULTADOS}}</dd>
+        <dt>Comunidade</dt><dd>{{PALESTRAS_CONTEUDO_SEGUIDORES}}</dd>
+        <dt>Stack</dt>
+        <dd>
+          <div class="chips">
+            <!-- REPETIR: só o que usa no dia a dia --><span class="chip">{{TECNOLOGIA}}</span><!-- /REPETIR -->
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:18px">Trajetória</h3>
+      <ol class="timeline">
+        <!-- REPETIR: do mais antigo ao mais recente -->
+        <li><div class="when">{{PERIODO}}</div><div class="what">{{CARGO}} · {{EMPRESA}}</div><div class="small muted">{{DESTAQUE_CURTO}}</div></li>
+        <!-- /REPETIR -->
+        <li class="now"><div class="when">{{PERIODO}} – hoje</div><div class="what">{{CARGO_ATUAL}} · {{EMPRESA}}</div><div class="small muted">{{DESTAQUE_CURTO}}</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 3. BALANÇO -->
+<section class="slide" id="balanco" data-title="Balanço do PDI anterior">
+  <p class="eyebrow">Balanço do PDI anterior</p>
+  <h2>O que o plano anterior pedia, e o que aconteceu</h2>
+  <p class="lead">{{SALDO_EM_UMA_FRASE}}</p>
+
+  <div class="legend">
+    <!-- Deixe só os status usados na tabela -->
+    <span class="status s-ok">Finalizado</span>
+    <span class="status s-wip">Em progresso</span>
+    <span class="status s-hold">Em espera</span>
+    <span class="status s-open">Em aberto, a avaliação repetiu</span>
+    <span class="status s-check">A confirmar</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Item do PDI anterior</th><th>Status</th><th>Evidência</th></tr></thead>
+      <tbody>
+        <!-- REPETIR -->
+        <tr><td>{{ITEM}}</td><td><span class="status {{s-ok|s-wip|s-hold|s-open|s-check}}">{{ROTULO}}</span></td><td>{{EVIDENCIA_CONCRETA}}<span class="small faint">{{NOTA_OPCIONAL}}</span></td></tr>
+        <!-- /REPETIR -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 4. TRÊS ESPELHOS -->
+<section class="slide" id="espelhos" data-title="Três espelhos">
+  <p class="eyebrow">Como me vejo · como me veem</p>
+  <h2>Três espelhos</h2>
+  <p class="lead">O que se repete nos três espelhos é padrão, não percepção.</p>
+
+  <div class="grid g3">
+    <!-- REPETIR: autoavaliação, pares, avaliação formal (esta última com a classe "banca") -->
+    <div class="card mirror">
+      <h3>{{COMO_ME_VEJO | COMO_OS_PARES_ME_VEEM | COMO_A_AVALIACAO_ME_VIU}}</h3>
+      <div class="src">{{FONTE_E_DATA}}</div>
+      <h4 class="plus">Positivos</h4>
+      <ul class="clean small">
+        <li>{{PONTO}}</li>
+      </ul>
+      <h4 class="minus">A desenvolver</h4>
+      <ul class="clean small">
+        <li>{{PONTO}} <span class="tag-rep">✦ repete</span></li>
+      </ul>
+    </div>
+    <!-- /REPETIR -->
+  </div>
+
+  <div class="grid g2 insights">
+    <div class="card insight">
+      <h3>✦ O que se repete</h3>
+      <p>{{PADRAO_QUE_APARECE_NOS_ESPELHOS}}</p>
+    </div>
+    <div class="card insight blind">
+      <h3>◐ O ponto cego</h3>
+      <p>{{FORCA_NA_AUTOPERCEPCAO_QUE_A_AVALIACAO_SEPAROU}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SWOT -->
+<section class="slide" id="swot" data-title="SWOT">
+  <p class="eyebrow">Análise SWOT</p>
+  <h2>{{TESE_DA_ANALISE_EM_UMA_FRASE}}</h2>
+  <p class="lead">Forças e fraquezas são internas, oportunidades e ameaças vêm do contexto. O que é leitura, e não fato registrado, está marcado como hipótese.</p>
+
+  <div class="grid g2 swot">
+    <!-- REPETIR para q-s/S/Forças, q-w/W/Fraquezas, q-o/O/Oportunidades, q-t/T/Ameaças -->
+    <div class="card quad q-s">
+      <div class="quad-head"><span class="letter">S</span><h3>Forças</h3></div>
+      <ul class="clean small">
+        <!-- REPETIR: 4 a 5 itens -->
+        <li><strong>{{ITEM}}:</strong> {{EVIDENCIA}}</li>
+        <li><strong>{{ITEM_SEM_FONTE}}</strong> <span class="hyp">hipótese</span></li>
+        <!-- /REPETIR -->
+      </ul>
+    </div>
+    <!-- /REPETIR -->
+  </div>
+
+  <div class="grid g2 tows">
+    <div class="card move"><h4>S × O · Atacar</h4><p>{{ACAO}}</p></div>
+    <div class="card move"><h4>S × T · Defender</h4><p>{{ACAO}}</p></div>
+    <div class="card move"><h4>W × O · Evoluir</h4><p>{{ACAO}}</p></div>
+    <div class="card move"><h4>W × T · Proteger</h4><p>{{ACAO}}</p></div>
+  </div>
+</section>
+
+<!-- 6. PARECER DA AVALIAÇÃO -->
+<section class="slide" id="banca" data-title="Parecer da avaliação">
+  <p class="eyebrow">Parecer da avaliação</p>
+  <h2>{{PARECER_EM_UMA_FRASE}}</h2>
+  <p class="lead">Resumo das dimensões avaliadas. ↑ é o que a avaliação destacou, → é a oportunidade que ela deixou.</p>
+
+  <div class="grid dims">
+    <!-- REPETIR: uma por dimensão -->
+    <div class="card dim">
+      <h3>{{DIMENSAO}}</h3>
+      <div class="row up"><b>↑</b><span>{{DESTAQUE_RESUMIDO}}</span></div>
+      <div class="row gap"><b>→</b><span>{{OPORTUNIDADE_RESUMIDA}}</span></div>
+    </div>
+    <!-- /REPETIR -->
+  </div>
+
+  <div class="card verdict">
+    <div class="q" aria-hidden="true">“</div>
+    <div>
+      <p>{{PARECER_FINAL_SEM_SUAVIZAR_NEM_AGRAVAR}}</p>
+      <p class="muted small">{{ACOMPANHAMENTO_PEDIDO_PELA_AVALIACAO}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. OBJETIVO -->
+<section class="slide" id="objetivo" data-title="Objetivo">
+  <p class="eyebrow">Objetivo do novo ciclo</p>
+  <p class="goal">{{OBJETIVO_COM <em>PALAVRAS_CHAVE</em> DESTACADAS}}</p>
+
+  <div class="grid g3">
+    <div class="card qa"><div class="q">Quais resultados espero colher?</div><p>{{RESPOSTA}}</p></div>
+    <div class="card qa"><div class="q">Meu objetivo está alinhado com meu escopo?</div><p>{{RESPOSTA}}</p></div>
+    <div class="card qa"><div class="q">O que muda em relação ao PDI anterior?</div><p>{{RESPOSTA}}</p></div>
+  </div>
+</section>
+
+<!-- 8. PLANO DE AÇÃO -->
+<section class="slide" id="plano" data-title="Plano de ação">
+  <p class="eyebrow">Plano de ação</p>
+  <h2>{{N}} eixos, cada um com um sinal de sucesso mensurável</h2>
+  <p class="lead">{{DE_ONDE_VEM_CADA_EIXO}}</p>
+
+  <div class="grid axes">
+    <!-- REPETIR: um por eixo -->
+    <article class="card axis">
+      <div class="axis-head">
+        <div><div class="axis-num">EIXO {{01}}</div><h3>{{NOME_DO_EIXO}}</h3></div>
+        <span class="status {{s-...}}">{{ROTULO}}</span>
+      </div>
+      <p class="ask">{{QUEM_AVALIOU}}: {{O_QUE_PEDIU_COM_AS_PALAVRAS_DA_AVALIACAO}}</p>
+      <div>
+        <h4>O que vou fazer</h4>
+        <ol>
+          <li>{{ACAO_ANCORADA_EM_CASE_OU_PROJETO_REAL}}</li>
+          <li>{{ACAO}}</li>
+          <li>{{ACAO}}</li>
+        </ol>
+      </div>
+      <div class="signal"><b>Sinal:</b> {{RESULTADO_VERIFICAVEL_POR_OUTRA_PESSOA}}</div>
+      <div class="axis-foot"><span><b>Quem ajuda:</b> {{PAPEIS}}</span><span><b>Plano de estudos:</b> {{ONDE}}</span></div>
+    </article>
+    <!-- /REPETIR -->
+  </div>
+</section>
+
+<!-- 9. ROADMAP -->
+<section class="slide" id="roadmap" data-title="Roadmap">
+  <p class="eyebrow">Roadmap</p>
+  <h2>Doze meses em três fases</h2>
+  <p class="lead">{{COMO_AS_FASES_SE_ENCAIXAM_NO_CHECKPOINT_E_NO_PLANO_DE_ESTUDOS}}</p>
+
+  <div class="grid road">
+    <!-- REPETIR: três fases -->
+    <div class="card phase">
+      <span class="dot"></span>
+      <div class="when">{{MES_INICIO}} – {{MES_FIM}}</div>
+      <h3>{{NOME_DA_FASE}}</h3>
+      <h4>Onde quero chegar</h4>
+      <ul><li>{{META}}</li></ul>
+      <h4>Sinais que consegui</h4>
+      <ul><li>{{SINAL}}</li></ul>
+      <h4>Quem pode me ajudar</h4>
+      <ul><li>{{PAPEIS}}</li></ul>
+    </div>
+    <!-- /REPETIR -->
+  </div>
+</section>
+
+<!-- 10. ENTREGAS STAR -->
+<section class="slide" id="entregas" data-title="Entregas de sucesso">
+  <p class="eyebrow">Minhas entregas de sucesso · método STAR</p>
+  <h2>Os cases, com número</h2>
+  <p class="lead">Em amarelo, o que ainda falta para mostrar impacto medido, e não estimado.</p>
+
+  <div class="grid g2">
+    <!-- REPETIR: quatro cases principais -->
+    <div class="card star-card">
+      <h3>{{TITULO_DO_CASE}}</h3>
+      <div class="src">{{CATEGORIA}}</div>
+      <div class="nums"><span>{{METRICA_1}}</span><span>{{METRICA_2}}</span><span>{{METRICA_3}}</span></div>
+      <div class="star-grid filled">
+        <span class="l">S</span><span class="v">{{SITUACAO}}</span>
+        <span class="l">T</span><span class="v">{{TAREFA}}</span>
+        <span class="l">A</span><span class="v">{{ACAO}}</span>
+        <span class="l">R</span><span class="v">{{RESULTADO}}</span>
+      </div>
+      <div class="metrics"><b>Para fortalecer:</b> {{NUMERO_QUE_FALTA_OU_ELO_A_MEDIR}}</div>
+    </div>
+    <!-- /REPETIR -->
+  </div>
+
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card side">
+      <h3>Negociações</h3>
+      <ul class="clean small">
+        <li><b class="win">✓</b> <strong>{{NEGOCIACAO_GANHA}}:</strong> {{RESUMO}}</li>
+        <li><b class="loss">✗</b> <strong>{{NEGOCIACAO_PERDIDA}}:</strong> {{RESUMO_E_LICAO}}</li>
+      </ul>
+    </div>
+    <div class="card side">
+      <h3>O que não funcionou</h3>
+      <p class="small muted" style="margin:0">{{PROPOSTA_TROCADA_E_POR_QUE}}</p>
+      <p class="small" style="margin:12px 0 0">{{COMO_ISSO_ALIMENTA_UM_EIXO}}</p>
+    </div>
+    <div class="card side">
+      <h3>Pessoas</h3>
+      <ul class="clean small">
+        <li><strong>{{CONFLITO_OU_MENTORIA}}:</strong> {{RESULTADO}}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 11. ACOMPANHAMENTO -->
+<section class="slide" id="acompanhamento" data-title="Acompanhamento">
+  <p class="eyebrow">Acompanhamento</p>
+  <h2>Como este PDI vai ser acompanhado</h2>
+  <p class="lead">Cadência para o plano não virar documento de gaveta.</p>
+
+  <div class="grid g3">
+    <div class="card cadence"><div class="big">{{DATA}}</div><h3>Checkpoint</h3><p class="muted small">{{O_QUE_LEVAR}}</p></div>
+    <div class="card cadence"><div class="big">{{FREQUENCIA}}</div><h3>1:1 com o gestor</h3><p class="muted small">{{COMO_REVISAR}}</p></div>
+    <div class="card cadence"><div class="big">{{QUEM_OU_A_DEFINIR}}</div><h3>Mentoria técnica</h3><p class="muted small">{{FOCO}}</p></div>
+  </div>
+
+  <div class="card next" style="margin-top:16px">
+    <h3 style="margin-bottom:14px">Próximos passos</h3>
+    <ol>
+      <li>{{CONFIRMAR_OS_ITENS_A_CONFIRMAR}}</li>
+      <li>{{LEVANTAR_OS_NUMEROS_PARA_FORTALECER}}</li>
+      <li>{{PASSO}}</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  PDI {{ANO}} · {{NOME}} · Fontes: {{LISTA_DE_FONTES}}.
+</footer>
+
+<script>
+  (function () {
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var nav = document.querySelector('.dots');
+    var counter = document.querySelector('.counter');
+    var links = slides.map(function (s, i) {
+      var a = document.createElement('a');
+      a.href = '#' + s.id;
+      a.setAttribute('aria-label', s.dataset.title);
+      var label = document.createElement('span');
+      label.textContent = s.dataset.title;
+      a.appendChild(label);
+      nav.appendChild(a);
+      return a;
+    });
+
+    var current = 0;
+    function mark(i) {
+      current = i;
+      links.forEach(function (a, j) { a.classList.toggle('on', j === i); });
+      counter.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+    }
+    mark(0);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) mark(slides.indexOf(e.target));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    slides.forEach(function (s) { io.observe(s); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.closest && e.target.closest('input, textarea, [contenteditable]')) return;
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') next = Math.min(current + 1, slides.length - 1);
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') next = Math.max(current - 1, 0);
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = slides.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        slides[next].scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  })();
+</script>
+</body>
+</html>
