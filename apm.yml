@@ -7,8 +7,6 @@ repository: https://github.com/dudscode/skills-protagonista
 keywords: [carreira, pdi, roadmap, estudo, mentoria, war-room, star, swot]
 
 type: skill
-targets:
-  - claude
 
 includes: auto
 

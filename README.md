@@ -1,6 +1,8 @@
 # skills-protagonista
 
-Skills do [Claude Code](https://claude.com/claude-code) para quem quer **conduzir a própria carreira em tecnologia**, em vez de esperar que ela aconteça. Cada skill transforma material bruto (feedback, PDI, orientação de mentor, LinkedIn, cases) num plano com evidência, e depois ajuda a executar esse plano.
+Skills de agente para quem quer **conduzir a própria carreira em tecnologia**, em vez de esperar que ela aconteça. Cada skill transforma material bruto (feedback, PDI, orientação de mentor, LinkedIn, cases) num plano com evidência, e depois ajuda a executar esse plano.
+
+Elas são escritas em Markdown puro, no formato `SKILL.md`, e funcionam em **qualquer agente de código que leia skills** — Claude Code, GitHub Copilot, Codex, Cursor e outros.
 
 Elas não entregam plano genérico. Partem do seu contexto, perguntam quando falta informação e marcam como hipótese o que não tem fonte.
 
@@ -48,13 +50,21 @@ Depois, na pasta do projeto onde você quer as skills:
 
 ```bash
 # as duas skills
-apm install dudscode/skills-protagonista --target claude
+apm install dudscode/skills-protagonista
 
 # uma skill só
-apm install dudscode/skills-protagonista --skill criar-pdi --target claude
+apm install dudscode/skills-protagonista --skill criar-pdi
 ```
 
-O apm baixa o pacote em `apm_modules/` e publica as skills em `.claude/skills/`, que é de onde o Claude Code as lê. Ele também cria um `apm.yml` e um `apm.lock.yaml` no seu projeto, para a instalação ser reproduzível, e acrescenta `apm_modules/` ao seu `.gitignore`.
+O apm publica as skills na pasta do agente que ele detectar no projeto. Numa pasta que ainda não tem configuração de agente nenhum, ele cai num padrão — no nosso teste, `.github/skills/` —, então vale dizer qual você quer:
+
+```bash
+apm install dudscode/skills-protagonista --target claude
+apm install dudscode/skills-protagonista --target copilot
+apm install dudscode/skills-protagonista --target all
+```
+
+Ele baixa o pacote em `apm_modules/`, cria um `apm.yml` e um `apm.lock.yaml` no seu projeto, para a instalação ser reproduzível, e acrescenta `apm_modules/` ao seu `.gitignore`.
 
 Para fixar uma versão, aponte para a tag: `dudscode/skills-protagonista#v1.0.0`.
 
@@ -72,43 +82,49 @@ dependencies:
 
 ### Sem o apm, copiando as pastas
 
-As skills do Claude Code ficam em `~/.claude/skills/` (para você, em qualquer projeto) ou em `.claude/skills/` dentro de um projeto.
+Cada agente lê as skills de uma pasta própria. As mais comuns:
+
+| Agente | Pasta do projeto | Pasta pessoal |
+|---|---|---|
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Copilot | `.github/skills/` | conforme a documentação |
+| Demais agentes (Codex, Cursor…) | `.agents/skills/` | conforme a documentação |
+
+Na dúvida, confira na documentação do seu agente, ou instale pelo apm com `--target` e veja onde os arquivos caíram.
+
+Copie a pasta da skill para lá:
 
 ```bash
 git clone https://github.com/dudscode/skills-protagonista.git
 
-# as duas, para você
-mkdir -p ~/.claude/skills
-cp -R skills-protagonista/.apm/skills/criar-* ~/.claude/skills/
+# as duas, num projeto
+mkdir -p .agents/skills
+cp -R skills-protagonista/.apm/skills/criar-* .agents/skills/
 
 # uma só
-cp -R skills-protagonista/.apm/skills/criar-pdi ~/.claude/skills/
-
-# ou só num projeto
-mkdir -p .claude/skills
-cp -R skills-protagonista/.apm/skills/criar-roadmap .claude/skills/
+cp -R skills-protagonista/.apm/skills/criar-pdi .agents/skills/
 ```
 
 **Atualizar:** `git pull` no clone e copie de novo.
 
-Para conferir, de qualquer uma das formas: abra o Claude Code e digite `/`. As skills aparecem na lista.
+Para conferir, de qualquer uma das formas: peça ao agente para listar as skills disponíveis, ou digite `/` se ele tiver esse atalho.
 
 ### Requisitos
 
 | Requisito | Quando |
 |---|---|
-| [Claude Code](https://claude.com/claude-code) | Sempre |
+| Um agente de código que leia skills | Sempre |
 | [`apm`](https://github.com/microsoft/apm) | Opcional: instalar e atualizar as skills sem copiar pasta |
-| Extensão Claude in Chrome, logada na sua conta do LinkedIn | `criar-pdi`, para ler o seu perfil |
+| Automação de navegador no seu agente, logada na sua conta | `criar-pdi`, para ler o seu perfil do LinkedIn |
 | `python3` | Para extrair texto de `.pptx` e servir a página localmente |
-| `pandoc` e Google Chrome | `criar-roadmap`, só se quiser apostilas em PDF |
+| `pandoc` e um navegador headless | `criar-roadmap`, só se quiser apostilas em PDF |
 | `git` e `gh` | Se quiser versionar o PDI ou o roadmap no GitHub |
 
 ---
 
 ## Uso
 
-No Claude Code, dentro da pasta onde quer o resultado:
+Abra o seu agente na pasta onde quer o resultado e invoque a skill pelo nome. Em agentes com atalho de barra:
 
 ```
 /criar-pdi
@@ -169,7 +185,7 @@ Os termos que aparecem nas skills e nos arquivos que elas geram.
 | **War room** | A sala, real ou virtual, onde um incidente de produção é investigado sob pressão |
 | **Plantão** | A escala de quem responde aos incidentes fora do horário |
 | **Game day** | Quebrar o sistema de propósito, **sabendo** o que quebrou, para aprender a assinatura de cada sintoma |
-| **Modo Sabotagem** | O Claude injeta de 1 a 3 falhas escondidas no seu projeto e entrega só o alerta. Você diagnostica às cegas, dentro de um timebox |
+| **Modo Sabotagem** | O agente injeta de 1 a 3 falhas escondidas no seu projeto e entrega só o alerta. Você diagnostica às cegas, dentro de um timebox |
 | **Níveis de sabotagem** | 1 = código, 2 = configuração e infraestrutura local, 3 = plataforma |
 | **War-room-log** | O arquivo em que você escreve o relatório do incidente antes de ver o gabarito |
 | **Gabarito** | O `git diff` da branch sabotada. Olhar antes do relatório anula o exercício |

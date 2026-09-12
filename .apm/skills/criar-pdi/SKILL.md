@@ -70,7 +70,7 @@ Mantenha o CSS e o script do template. A paleta pode mudar (as variáveis estão
 
 ### 6. Verificar
 
-A extensão do Chrome não abre `file://`. Sirva a pasta e confira as seções mais densas (balanço, espelhos, SWOT, eixos, STAR):
+Automação de navegador costuma não abrir `file://`. Sirva a pasta e confira as seções mais densas (balanço, espelhos, SWOT, eixos, STAR):
 
 ```bash
 python3 -m http.server 8765 --bind 127.0.0.1   # em background
