@@ -31,11 +31,11 @@ Tabelas de plano de ação ("Passo / O que preciso fazer / Quem pode me ajudar /
 
 ## PDF
 
-Use a ferramenta Read com o parâmetro `pages`. Para PDFs longos, leia em blocos de até 20 páginas.
+Use a ferramenta de leitura de arquivos do seu agente. Para PDFs longos, leia em blocos de até 20 páginas.
 
 ## Fotos do feedback (HEIC, PNG, JPG)
 
-Leia cada imagem com a ferramenta Read e transcreva **literalmente**, por dimensão. Mantenha a ordem do documento original. No topo do `feedback.md`, registre quem enviou, a data e de quais arquivos veio a transcrição.
+Leia cada imagem com a ferramenta de leitura do seu agente, que precisa enxergar imagens, e transcreva **literalmente**, por dimensão. Mantenha a ordem do documento original. No topo do `feedback.md`, registre quem enviou, a data e de quais arquivos veio a transcrição.
 
 Estrutura esperada de um feedback de banca ou calibração:
 
@@ -60,7 +60,7 @@ Estrutura esperada de um feedback de banca ou calibração:
 
 ## LinkedIn
 
-Acesso anônimo é bloqueado (HTTP 999), então `WebFetch` não funciona. Use a skill `claude-in-chrome`, com a pessoa logada na conta **dela**, e só para o perfil **dela**.
+Acesso anônimo é bloqueado (HTTP 999), então buscar a URL direto não funciona. Use a automação de navegador do seu agente, com a pessoa logada na conta **dela**, e só para o perfil **dela**.
 
 1. Abra `https://www.linkedin.com/in/<slug>/` e extraia o texto da página: headline, sobre, destaques, atividades.
 2. As seções completas ficam em páginas de detalhe. Abra cada uma, **espere uns 3 segundos** (o conteúdo carrega depois do HTML) e só então extraia o texto:

@@ -15,7 +15,7 @@ Os temas da apostila acompanham os blocos do `PLANO.md` da etapa, com uma tabela
 
 ### Gerar o PDF
 
-Com `pandoc` (Markdown → HTML) e Chrome headless (HTML → PDF), sem precisar de LaTeX:
+Com `pandoc` (Markdown → HTML) e um navegador headless (HTML → PDF), sem precisar de LaTeX. O exemplo usa o Chrome no macOS; Chromium e Edge aceitam as mesmas opções:
 
 ```bash
 pandoc apostila.md --from=gfm --to=html5 --standalone --self-contained \

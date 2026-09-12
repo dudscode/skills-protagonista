@@ -1,6 +1,6 @@
 # Skill `criar-pdi`
 
-Uma skill do [Claude Code](https://claude.com/claude-code) para montar o seu PDI (Plano de Desenvolvimento Individual) como uma página `index.html` navegável. Ela parte do seu material bruto e chega a um plano com evidência:
+Uma skill de agente, para qualquer harness que leia skills, para montar o seu PDI (Plano de Desenvolvimento Individual) como uma página `index.html` navegável. Ela parte do seu material bruto e chega a um plano com evidência:
 
 - **Balanço** do PDI anterior: o que andou, o que travou e com qual evidência.
 - **Três espelhos:** autoavaliação, pares e avaliação formal, com o que se repete e o ponto cego.
@@ -17,7 +17,7 @@ Nada é obrigatório, mas quanto mais, melhor:
 |---|---|
 | PDI anterior | `.pptx`, `.pdf` ou texto |
 | Feedback formal (banca de promoção, avaliação, calibração) | Texto, PDF ou fotos |
-| Perfil do LinkedIn | URL. Precisa da extensão Claude in Chrome e de você logado |
+| Perfil do LinkedIn | URL. Precisa de automação de navegador no seu agente, com você logado |
 | Cases que você já escreveu | Qualquer formato. Se não tiver, a skill entrevista você |
 | Plano de estudos em andamento | Opcional, para ancorar os eixos |
 
@@ -26,24 +26,20 @@ Nada é obrigatório, mas quanto mais, melhor:
 Com o [apm](https://github.com/microsoft/apm):
 
 ```bash
-apm install dudscode/skills-protagonista --skill criar-pdi --target claude
+apm install dudscode/skills-protagonista --skill criar-pdi
 ```
 
-Ou copiando a pasta para as skills do Claude Code:
+Ou copiando a pasta para onde o seu agente lê skills (`.agents/skills/` na maioria, `.claude/skills/` no Claude Code):
 
 ```bash
-# para você, em qualquer projeto
-cp -R criar-pdi ~/.claude/skills/
-
-# ou só para um projeto
-mkdir -p .claude/skills && cp -R criar-pdi .claude/skills/
+mkdir -p .agents/skills && cp -R criar-pdi .agents/skills/
 ```
 
 O [README do repositório](../../../README.md) tem as duas formas em detalhe.
 
 ## Uso
 
-No Claude Code, dentro da pasta onde quer o PDI:
+No seu agente, dentro da pasta onde quer o PDI:
 
 ```
 /criar-pdi

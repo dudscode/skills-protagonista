@@ -1,6 +1,6 @@
 # Skill `criar-roadmap`
 
-Uma skill do [Claude Code](https://claude.com/claude-code) para montar **e conduzir** um roadmap de estudos de carreira. O roadmap não é genérico: parte do seu contexto real, é validado por um mentor e tem critérios que impedem você de se enganar sobre o próprio progresso.
+Uma skill de agente, para qualquer harness que leia skills, para montar **e conduzir** um roadmap de estudos de carreira. O roadmap não é genérico: parte do seu contexto real, é validado por um mentor e tem critérios que impedem você de se enganar sobre o próprio progresso.
 
 ## O que ela faz
 
@@ -35,10 +35,10 @@ Se você fez o seu PDI com a skill [`criar-pdi`](../criar-pdi/), os eixos dele e
 Com o [apm](https://github.com/microsoft/apm):
 
 ```bash
-apm install dudscode/skills-protagonista --skill criar-roadmap --target claude
+apm install dudscode/skills-protagonista --skill criar-roadmap
 ```
 
-Ou copie a pasta `criar-roadmap` para `~/.claude/skills/`. O [README do repositório](../../../README.md) tem as duas formas em detalhe.
+Ou copie a pasta `criar-roadmap` para onde o seu agente lê skills (`.agents/skills/` na maioria, `.claude/skills/` no Claude Code). O [README do repositório](../../../README.md) tem as duas formas em detalhe.
 
 ## Uso
 
