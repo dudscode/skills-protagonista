@@ -54,7 +54,7 @@ apm install dudscode/skills-protagonista --target claude
 apm install dudscode/skills-protagonista --skill criar-pdi --target claude
 ```
 
-O apm baixa o pacote em `apm_modules/` e publica as skills em `.claude/skills/`, que é de onde o Claude Code as lê.
+O apm baixa o pacote em `apm_modules/` e publica as skills em `.claude/skills/`, que é de onde o Claude Code as lê. Ele também cria um `apm.yml` e um `apm.lock.yaml` no seu projeto, para a instalação ser reproduzível, e acrescenta `apm_modules/` ao seu `.gitignore`.
 
 Para fixar uma versão, aponte para a tag: `dudscode/skills-protagonista#v1.0.0`.
 
